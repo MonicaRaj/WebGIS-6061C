@@ -1,0 +1,280 @@
+
+#loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: block;
+    opacity: 0.7;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+  }
+
+   /* Header/Logo Title */
+   .header {
+    padding: 1px;
+    text-align: center;
+    background: #308dd9;
+    color: white;
+    font-size: 10px;
+    /* height: 5%; */
+    vertical-align: center;
+}
+
+  /* #loading-image {
+    position: absolute;
+    top: 100px;
+    left: 240px;
+    z-index: 100;
+  } */
+
+  #loading-image {
+    display: block;
+    margin-top: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 15%;
+}
+
+.wholeApp{
+    outline: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  .row{
+    height: 100%;
+  }
+
+ * {
+    box-sizing: border-box;
+  }
+
+  /* Create two unequal columns that floats next to each other */
+  .column {
+    float: left;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+  }
+
+  .left {
+    height: 100%;
+    width: 65%;
+  }
+
+  .right {
+    height: 100%;
+    width: 35%;
+  }
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  html,
+  body {
+    outline: none;
+    user-select: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .esri-popup--is-docked-top-right .esri-popup__main-container {
+    max-height: 100%;
+  }
+
+  #appContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+
+  #viewDiv {
+    flex: 1;
+    width: 100%;
+  }
+
+  .container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 45px;
+    height: 22px;
+    vertical-align: middle;
+  }
+
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 1px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+
+  input:checked+.slider {
+    background-color: #2196f3;
+  }
+
+  input:focus+.slider {
+    box-shadow: 0 0 1px #2196f3;
+  }
+
+  input:checked+.slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+  }
+
+  /* Rounded sliders */
+
+  .slider.round {
+    border-radius: 20px;
+  }
+
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .labelText {
+    padding-left: 5px;
+    font-size: 15px;
+  }
+
+  #mainDiv {
+    padding: 8px;
+  }
+
+/*  ACCORDION PANE */
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  .active, .accordion:hover {
+      /* outline: 2px solid black; */
+      color: white;
+      background-color: #46484a;
+  }
+
+  .accordion:after {
+    content: '\002B';
+    color: rgb(64, 140, 181);
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+  }
+
+  .active:after {
+    content: "\2212";
+  }
+
+  .panel {
+    padding: 0 18px;
+    background-color: rgb(222, 222, 222);
+    overflow: auto;
+    transition: 0.2s ease-out;
+  }
+
+  div.panel {
+        display: none;
+    }
+
+    div.panel.show {
+        display: block !important;
+    }
+
+    .esri-view .esri-view-surface--touch-none {
+        touch-action: none;
+        outline: none;
+    }
+
+    .esri-widget--button{
+        outline: none;
+    }
+
+  .splitter {
+    width: 100%;
+    height: 92%;
+    display: flex;
+}
+
+#separator {
+    cursor: col-resize;
+    /* background-color: #aaa; */
+    background-color: rgb(147, 149, 150);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='30'><path d='M2 0 v30 M5 0 v30 M8 0 v30' fill='none' stroke='white'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10px;
+    height: 100%;
+    /* border: 1px solid #1abc9c; */
+
+    /* Prevent the browser's built-in drag from interfering */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#first {
+    /* background-color: #dde; */
+    outline: none;
+    width: 65%;
+    height: 100%;
+    min-width: 10px;
+}
+
+#second {
+    outline: none;
+    background-color: #fff;
+    width: 35%;
+    height: 100%;
+    min-width: 10px;
+    text-align: center;
+}
+
+ .sampleImage{
+    width: 100%;
+    height: 100%;
+ }

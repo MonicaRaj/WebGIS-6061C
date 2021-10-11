@@ -1,0 +1,212 @@
+<!DOCTYPE html> 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+  <title> Geo InfoBridge | NBI</title>
+  <link rel="icon" type="image/png" href="static/images/FAULogo.png" />
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+  crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" 
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" 
+  crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" 
+  crossorigin="anonymous"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="https://kit.fontawesome.com/a6e2755b4d.js" 
+          crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
+	
+	<!-- Chartist -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"> </script>
+    
+  <link rel="stylesheet" href="static/infobridge.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.19/esri/themes/light/main.css" />
+  <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/dark/main.css" /> -->
+  
+  <script src="https://js.arcgis.com/4.19/"></script>
+  <script src="static/infobridge.js"></script> 
+
+</head>
+
+<body>
+
+<div class="wholeApp">
+  <div id="loading">
+    <img id="loading-image" src="static/images/loading.gif" alt="Loading..." />
+  </div>
+<!-- <div class="row">
+  <div class="column left" style="background-color:#aaa;">
+    <div id="appContainer">
+      <div id="viewDiv"></div>
+      <div id="mainDiv" class="esri-widget">
+        <label class="switch">
+          <input id="checkboxId" type="checkbox" checked="yes">
+          <span class="slider round"></span>
+        </label>
+        <label class="labelText" id="labelText">Hide Attributes</label>
+      </div>
+  
+      <div id="tableContainer" class="container">
+        <div id="tableDiv"></div>
+      </div>
+    </div>
+  </div>
+  <div class="column right" style="background-color:#bbb; overflow: auto;">
+      <h2>Tools</h2>
+      <p>In this various features can be visualized</p>
+      <button class="accordion">Charting</button>
+      <div class="panel">
+        <img src="static/images/sampleChart.jpg" class="sampleImage"/>
+      </div>
+
+      <button class="accordion">Rendering</button>
+      <div class="panel">
+        <img src="static/images/sampleRender.png" class="sampleImage"/>
+      </div>
+
+      <button class="accordion">Performance History</button>
+      <div class="panel">
+        <img src="static/images/samplePerformance.png" class="sampleImage"/>
+      </div>
+  </div>
+</div> -->
+<div class="header">
+  <a href="https://www.fau.edu" target="_blank"><img src="static/images/FAULogo.png" style="width: 5.5%;
+  float: left;
+  margin-left: 10px;"></a>
+   <h4 style="margin: 10px;">Geo InfoBridge
+    <p  style="float:left;font-size: 15px;" >by Monica Rajkumar</p>
+     <i id="about" style="float: right;
+     margin-right: 20px; cursor: pointer;
+     font-size: larger;" class="fas fa-info-circle"
+     data-toggle="modal" data-target="#aboutModal" title="About"></i>
+    </h4>
+ </div>
+
+<div class="splitter" > 
+  <div id="first">
+    <div id="appContainer">
+      <div id="viewDiv" ></div>
+      <div id="mainDiv"class="esri-widget">
+        <label class="switch">
+          <input id="checkboxId" type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <label class="labelText" id="labelText">Show Attributes</label>
+      </div>
+  
+      <div id="tableContainer" class="container">
+        <div id="tableDiv"></div>
+      </div>
+      <div id="timeSliderDiv"></div>
+    </div>
+  </div>
+
+    <div id="separator" ></div>
+
+    <div id="second" style="overflow: auto;">
+      <h2>Querying Tools</h2>
+      <p>Filters and charts</p>
+      <button class="accordion">Feature Count</button>
+      <div class="panel">
+      <br>
+      <div class="form-check form-check-inline">
+        <input name="featCount" class="form-check-input" type="radio" id="inlineradio1" value="DECK_COND_058">
+        <label class="form-check-label" for="inlineradio1">Deck</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input name="featCount"  class="form-check-input" type="radio" id="inlineradio2" value="SUPERSTRUCTURE_COND_059">
+        <label class="form-check-label" for="inlineradio2">Substructure</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input name="featCount"  class="form-check-input" type="radio" id="inlineradio3" value="SUBSTRUCTURE_COND_060" >
+        <label class="form-check-label" for="inlineradio3">Superstructure</label>
+      </div>
+      <br>
+      <select id="cr_value" class="form-select" aria-label="Default select example" style="margin-top: 5%;">
+        <option value="0" selected>Choose condition rating</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="N">N</option>
+      </select>
+      <br>
+      <button id="filterCR" type="button" class="btn btn-outline-success" 
+      style="margin-top: 5%;margin-bottom: 5%;">Get Feature Count</button>
+      </div>
+      <button class="accordion">Dashboard based on condition ratings</button>
+      <div class="panel">
+        <br>
+      <div class="form-check form-check-inline">
+        <input name="chartFeat"  class="form-check-input" type="radio" id="Cinlineradio1" value="DECK_COND_058" checked>
+        <label class="form-check-label" for="Cinlineradio1">Deck</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input  name="chartFeat"  class="form-check-input" type="radio" id="Cinlineradio2" value="SUPERSTRUCTURE_COND_059">
+        <label class="form-check-label" for="Cinlineradio2">Substructure</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input  name="chartFeat"  class="form-check-input" type="radio" id="Cinlineradio3" value="SUBSTRUCTURE_COND_060" >
+        <label class="form-check-label" for="Cinlineradio3">Superstructure</label>
+      </div>
+      <br> 
+      <button id="generateCR" type="button" class="btn btn-outline-success" 
+      style="margin-top: 5%;margin-bottom: 5%;">Generate</button>
+      <br>
+      <div id="chart" style="display: none" class="ct-chart ct-golden-section"> </div>
+     </div>
+  </div>
+
+  </div>
+
+   <!-- Modal -->
+   <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #308dd9;">
+          <h5 class="modal-title" style="color:white" id="exampleModalLabel">Geo InfoBridge</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="text-align: justify;">
+           Geo Infobridge is a Dashboard application through which one can visualize the bridges from NBI and NBE 
+          <br><br>
+          <a target="_blank" href="https://www.fhwa.dot.gov/bridge/mtguide.pdf ">
+            National Bridges Inventory (NBI) Coding Guide
+          </a>
+          <br>
+          <a target="_blank" href="https://www.fhwa.dot.gov/bridge/nbi/131216_a1.pdf">
+            National Bridge Elements (NBE) Coding Guide
+          </a>
+        </div>  
+   
+        <div class="modal-footer">
+          <button type="button" style="background-color: gray;" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
