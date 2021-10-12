@@ -128,6 +128,33 @@ require([
         }
       });
 
+      // Wait till the view is ready
+      view.when(function() {
+        // Listen to mouse move event
+        view.on("pointer-move", function(evt) {
+          var loc = evt.mapPoint;
+          view.hitTest(evt).then(function(response) {
+            if (response.results.length > 0) {
+              view.popup.open({
+                features: [response.results[0].graphic],
+                location: loc
+              });
+            }
+          });
+        });
+
+        view.on("click", function(evt) {
+          // get the latigude and longitude of the location that was clicked
+          var vLat = evt.mapPoint.latitude;
+          var vLon = evt.mapPoint.longitude;
+
+          // build the Google Street View URL. Refer to https://developers.google.com/maps/documentation/urls/guide#street-view-action
+          var gUrl = "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=" + vLat + "," + vLon + "&heading=" + 300 + "&pitch=0&fov=90";
+          var myWindow = window.open(gUrl, "Street View", "width=800,height=600");
+          myWindow.focus();
+        });
+      });
+
       var homeBtn = new Home({
         view: view
       });
